@@ -10,10 +10,10 @@ const Footer = () => {
           <div className="md:col-span-1">
             <Link to="/" className="flex items-center space-x-2">
               <div className="w-10 h-10 rounded-full crypto-gradient flex items-center justify-center">
-                <span className="text-white font-bold text-lg">CP</span>
+                <span className="text-white font-bold text-lg">CW</span>
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-crypto-blue to-crypto-purple bg-clip-text text-transparent">
-                CryptoPay
+                CryptoWhite
               </span>
             </Link>
             <p className="mt-4 text-gray-600 dark:text-gray-400">
@@ -114,7 +114,7 @@ const Footer = () => {
         <hr className="border-gray-200 dark:border-gray-700 my-8" />
 
         <div className="text-center text-gray-500 dark:text-gray-400 text-sm">
-          <p>© 2025 CryptoPay Nexus. Tous droits réservés.</p>
+          <p>© 2025 CryptoWhite Nexus. Tous droits réservés.</p>
         </div>
       </div>
     </footer>

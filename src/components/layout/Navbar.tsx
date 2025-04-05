@@ -12,10 +12,10 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-2">
           <div className="w-10 h-10 rounded-full crypto-gradient flex items-center justify-center">
-            <span className="text-white font-bold text-lg">CP</span>
+            <span className="text-white font-bold text-lg">CW</span>
           </div>
           <span className="text-xl font-bold bg-gradient-to-r from-crypto-blue to-crypto-purple bg-clip-text text-transparent">
-            CryptoPay
+            CryptoWhite
           </span>
         </Link>
 
