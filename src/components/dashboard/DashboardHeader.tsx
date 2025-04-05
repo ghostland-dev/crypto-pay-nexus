@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Bell, Moon, Search, Sun, User } from "lucide-react";
+import { Moon, Search, Sun, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import {
@@ -12,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Link } from "react-router-dom";
+import NotificationCenter from "./NotificationCenter";
 
 const DashboardHeader = () => {
   const { user, logout } = useAuth();
@@ -59,14 +60,7 @@ const DashboardHeader = () => {
             {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </Button>
           
-          <Button 
-            variant="ghost" 
-            size="icon"
-            className="text-gray-500 dark:text-gray-400 relative"
-          >
-            <Bell className="h-5 w-5" />
-            <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500"></span>
-          </Button>
+          <NotificationCenter />
           
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

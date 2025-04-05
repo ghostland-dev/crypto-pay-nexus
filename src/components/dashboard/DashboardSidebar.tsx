@@ -10,7 +10,9 @@ import {
   Settings, 
   Users, 
   Wallet, 
-  X 
+  X,
+  User,
+  Shield 
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -20,6 +22,11 @@ const menuItems = [
     icon: Home,
     label: "Vue d'ensemble",
     path: "/dashboard",
+  },
+  {
+    icon: User,
+    label: "Profil",
+    path: "/dashboard/profile",
   },
   {
     icon: BarChart3,
@@ -50,6 +57,11 @@ const menuItems = [
     icon: Settings,
     label: "Paramètres",
     path: "/dashboard/settings",
+  },
+  {
+    icon: Shield,
+    label: "Conformité",
+    path: "/compliance",
   },
 ];
 
