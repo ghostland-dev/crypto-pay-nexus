@@ -21,6 +21,9 @@ import Wallets from "./pages/dashboard/Wallets";
 import Transactions from "./pages/dashboard/Transactions";
 import Settings from "./pages/dashboard/Settings";
 import Profile from "./pages/dashboard/Profile";
+import Analytics from "./pages/dashboard/Analytics"; 
+import Customers from "./pages/dashboard/Customers";
+import Integrations from "./pages/dashboard/Integrations";
 import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 
@@ -82,6 +85,30 @@ const App = () => (
               element={
                 <ProtectedRoute>
                   <Settings />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/dashboard/analytics" 
+              element={
+                <ProtectedRoute>
+                  <Analytics />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/dashboard/customers" 
+              element={
+                <ProtectedRoute>
+                  <Customers />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/dashboard/integrations" 
+              element={
+                <ProtectedRoute>
+                  <Integrations />
                 </ProtectedRoute>
               } 
             />
