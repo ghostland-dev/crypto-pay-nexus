@@ -1,7 +1,6 @@
-
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -18,9 +17,7 @@ const Register = () => {
     confirmPassword: "",
   });
   const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
-  const navigate = useNavigate();
+  const { register, isLoading } = useAuth();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -31,34 +28,10 @@ const Register = () => {
     e.preventDefault();
     
     if (formData.password !== formData.confirmPassword) {
-      toast({
-        title: "Erreur",
-        description: "Les mots de passe ne correspondent pas.",
-        variant: "destructive",
-      });
       return;
     }
     
-    setIsLoading(true);
-
-    try {
-      // Simulation d'une inscription réussie
-      setTimeout(() => {
-        toast({
-          title: "Inscription réussie",
-          description: "Votre compte a été créé avec succès.",
-        });
-        navigate("/login");
-      }, 1500);
-    } catch (error) {
-      toast({
-        title: "Erreur d'inscription",
-        description: "Une erreur est survenue lors de la création de votre compte.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    await register(formData.name, formData.email, formData.password);
   };
 
   const togglePasswordVisibility = () => {

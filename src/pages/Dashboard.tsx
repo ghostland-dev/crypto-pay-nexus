@@ -1,28 +1,17 @@
-
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowUpRight, Bitcoin, CreditCard, DollarSign, LineChart, ReceiptText, RefreshCw, User, Users } from "lucide-react";
+import { ArrowUpRight, Bitcoin, CreditCard, DollarSign, LineChart, LogOut, ReceiptText, RefreshCw, User, Users } from "lucide-react";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
 
-  // Effet pour vérifier l'authentification (simulation)
-  useEffect(() => {
-    // Dans une application réelle, vous vérifieriez l'état d'authentification ici
-    const isAuthenticated = localStorage.getItem("isAuthenticated");
-    
-    if (!isAuthenticated) {
-      // Simulation pour la démo - en production, utilisez un vrai système d'authentification
-      // navigate("/login");
-    }
-  }, [navigate]);
-
-  // Données simulées pour le dashboard
   const stats = [
     {
       title: "Transactions",
@@ -61,6 +50,10 @@ const Dashboard = () => {
     { id: "TX123453", amount: "€324.00", currency: "BTC", status: "failed", date: "Il y a 2 jours" },
   ];
 
+  const handleLogout = () => {
+    logout();
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -69,7 +62,7 @@ const Dashboard = () => {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
             <div>
               <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Tableau de bord</h1>
-              <p className="text-gray-600 dark:text-gray-400">Bienvenue sur votre espace CryptoPay</p>
+              <p className="text-gray-600 dark:text-gray-400">Bienvenue {user?.name || "sur votre espace CryptoPay"}</p>
             </div>
             <div className="mt-4 md:mt-0 flex space-x-3">
               <Button variant="outline" className="flex items-center gap-2">
@@ -79,6 +72,14 @@ const Dashboard = () => {
               <Button className="bg-crypto-blue hover:bg-crypto-blue/90 flex items-center gap-2">
                 <Bitcoin className="h-4 w-4" />
                 Nouveau paiement
+              </Button>
+              <Button 
+                variant="outline" 
+                className="flex items-center gap-2 border-red-200 text-red-600 hover:bg-red-50"
+                onClick={handleLogout}
+              >
+                <LogOut className="h-4 w-4" />
+                Déconnexion
               </Button>
             </div>
           </div>
@@ -183,8 +184,8 @@ const Dashboard = () => {
                   <div className="h-20 w-20 rounded-full bg-crypto-blue/20 flex items-center justify-center mb-4">
                     <User className="h-10 w-10 text-crypto-blue" />
                   </div>
-                  <h3 className="text-lg font-medium">Jean Dupont</h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">jean.dupont@exemple.com</p>
+                  <h3 className="text-lg font-medium">{user?.name || "Jean Dupont"}</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">{user?.email || "jean.dupont@exemple.com"}</p>
                   <Button variant="outline" className="mt-4 w-full">
                     Modifier le profil
                   </Button>

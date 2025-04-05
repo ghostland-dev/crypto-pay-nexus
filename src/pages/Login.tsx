@@ -1,7 +1,7 @@
 
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,32 +14,11 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
-  const navigate = useNavigate();
+  const { login, isLoading } = useAuth();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
-
-    try {
-      // Simulation d'une authentification réussie
-      setTimeout(() => {
-        toast({
-          title: "Connexion réussie",
-          description: "Vous êtes maintenant connecté à votre compte.",
-        });
-        navigate("/dashboard");
-      }, 1500);
-    } catch (error) {
-      toast({
-        title: "Erreur de connexion",
-        description: "Email ou mot de passe incorrect.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    await login(email, password);
   };
 
   const togglePasswordVisibility = () => {
@@ -72,6 +51,9 @@ const Login = () => {
                 <CardTitle>Connexion</CardTitle>
                 <CardDescription>
                   Entrez vos identifiants pour accéder à votre compte
+                </CardDescription>
+                <CardDescription className="mt-1 text-yellow-600">
+                  Démo: demo@example.com / password
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
