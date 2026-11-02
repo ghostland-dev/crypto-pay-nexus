@@ -1,5 +1,7 @@
 # Crypto Pay Nexus
 
+[![CI](https://github.com/ghostland-dev/crypto-pay-nexus/actions/workflows/ci.yml/badge.svg)](https://github.com/ghostland-dev/crypto-pay-nexus/actions/workflows/ci.yml)
+
 Crypto payment gateway dashboard for merchants.
 
 ## Features
